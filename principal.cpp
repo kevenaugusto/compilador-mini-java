@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
 
 void allocVetor()
 {
-    vet = new string[50];
+    vet = new string[51];
 
     vet[0] = "UNDEF";
     vet[1] = "ID";
@@ -80,10 +80,11 @@ void allocVetor()
     vet[43] = "L_BRACKET";
     vet[44] = "R_BRACKET";
     vet[45] = "L_BRACES";
-    vet[46] = "SEMICOLON";
-    vet[47] = "DOT";
-    vet[48] = "COMMA";
-    vet[49] = "END_OF_FILE";
+    vet[46] = "R_BRACES";
+    vet[47] = "SEMICOLON";
+    vet[48] = "DOT";
+    vet[49] = "COMMA";
+    vet[50] = "END_OF_FILE";
 }
 
 void freeVetor()

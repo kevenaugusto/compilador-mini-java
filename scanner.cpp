@@ -265,6 +265,46 @@ Scanner::nextToken()
 
         //Busco na tabela para ver se é palavra reservada
         tok = searchTable(lexeme);
+
+        if (lexeme == "System" and input[pos] == '.')
+        {
+            pos++;
+            string palavra;
+
+            if (isalpha(input[pos]))
+            {
+                palavra.push_back(input[pos]);
+                pos++;
+
+                while (isalnum(input[pos]))
+                {
+                    palavra.push_back(input[pos]);
+                    pos++;
+                }
+            }
+
+            if (palavra == "out" and input[pos] == '.')
+            {
+                pos++;
+                palavra = "";
+
+                if (isalpha(input[pos]))
+                {
+                    palavra.push_back(input[pos]);
+                    pos++;
+
+                    while (isalnum(input[pos]))
+                    {
+                        palavra.push_back(input[pos]);
+                        pos++;
+                    }
+                }
+
+                if (palavra == "println")
+                    return new Token(SOUT, "System.out.println");
+            }
+        }
+
         if (!tok)
             tok = new Token(ID);
     
