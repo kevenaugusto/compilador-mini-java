@@ -1,9 +1,61 @@
 #include "scanner.h"    
 
+// ISSO AQUI VAI EMBORA DEPOIS, OK?!
+
+Token** table;
+
+void initTable()
+{
+    table = new Token*[19];
+
+    table[0] = new Token(BOOLEAN, "boolean");
+    table[1] = new Token(CLASS, "class");
+    table[2] = new Token(ELSE, "else");
+    table[3] = new Token(EXTENDS, "extends");
+    table[4] = new Token(FALSE, "false");
+    table[5] = new Token(IF, "if");
+    table[6] = new Token(INT, "int");
+    table[7] = new Token(LENGTH, "length");
+    table[8] = new Token(MAIN, "main");
+    table[9] = new Token(NEW, "new");
+    table[10] = new Token(PUBLIC, "public");
+    table[11] = new Token(RETURN, "return");
+    table[12] = new Token(STATIC, "static");
+    table[13] = new Token(STRING, "String");
+    table[14] = new Token(SOUT, "System.out.println");
+    table[15] = new Token(THIS, "this");
+    table[16] = new Token(TRUE, "true");
+    table[17] = new Token(VOID, "void");
+    table[18] = new Token(WHILE, "while");
+}
+
+void freeTable()
+{
+    for (int i = 0; i < 19; i++)
+        delete table[i];
+
+    delete[] table;
+}
+
+Token* searchTable(string lexeme)
+{
+    for (int i = 0; i < 19; i++)
+        if (lexeme == table[i]->lexeme)
+            return table[i];
+
+    return 0;
+}
+
+// LEMBRA DE DELETAR ESSA MERDA AÍ, ZERO MEIA!
+
 //Construtor que recebe uma string com o nome do arquivo 
 //de entrada e preenche input com seu conteúdo.
 Scanner::Scanner(string input/*, SymbolTable* table*/)
 {
+    // VAI EMBORA TAMBÉM!!
+    initTable();
+    // LEMBRA DE DELETAR!!
+
     /*this->input = input;
     cout << "Entrada: " << input << endl << "Tamanho: " 
          << input.length() << endl;*/

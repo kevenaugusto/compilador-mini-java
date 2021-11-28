@@ -16,10 +16,11 @@ class Parser
 		void mainClass();
 		void classDeclaration();
 		void varDeclaration();
-		void type();
 		void methodDeclaration();
-		void isType();
+		bool isType(int&);
 		void statement();
 		void expression();
+		void exp();
+		void op();
         void error(string);
 };
