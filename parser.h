@@ -13,11 +13,12 @@ class Parser
 		Parser(string);
 		void run();
         void program();
+		void mainClass();
 		void classDeclaration();
 		void varDeclaration();
 		void methodDeclaration();
 		void isType();
-		void isStatement();
-		void isExpression();
+		void statement();
+		void expression();
         void error(string);
 };

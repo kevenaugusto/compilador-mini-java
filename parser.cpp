@@ -26,7 +26,7 @@ Parser::match(int t)
 void
 Parser::run()
 {
-	advance();	
+	advance();
 
 	program();
 
@@ -36,13 +36,34 @@ Parser::run()
 void
 Parser::program()
 {
+	mainClass();
 
+	while (lToken->name == CLASS)
+		classDeclaration();
+
+	match(END_OF_FILE);
 }
 
 void
-Parser::classDeclaration()
+Parser::mainClass()
 {
-
+	match(CLASS);
+	match(ID);
+	match(L_BRACES);
+	match(PUBLIC);
+	match(STATIC);
+	match(VOID);
+	match(MAIN);
+	match(L_PARENTHESES);
+	match(STRING);
+	match(L_BRACKET);
+	match(R_BRACKET);
+	match(ID);
+	match(R_PARENTHESES);
+	match(L_BRACES);
+	statement();
+	match(R_BRACES);
+	match(R_BRACES);
 }
 
 void
@@ -70,13 +91,13 @@ Parser::isType()
 }
 
 void
-Parser::isStatement()
+Parser::statement()
 {
 
 }
 
 void
-Parser::isExpression()
+Parser::expression()
 {
 
 }
