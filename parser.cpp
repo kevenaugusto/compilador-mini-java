@@ -69,7 +69,24 @@ Parser::mainClass()
 void
 Parser::classDeclaration()
 {
+	match(CLASS);
+	match(ID);
 
+	if (lToken->name == EXTENDS)
+	{
+		advance();
+		match(ID);
+	}
+
+	match(L_BRACES);
+
+	while (isType(lToken->name))
+		varDeclaration();
+
+	while (lToken->name == PUBLIC)
+		methodDeclaration();
+
+	match(R_BRACES);
 }
 
 void
