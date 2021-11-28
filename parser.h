@@ -16,6 +16,7 @@ class Parser
 		void mainClass();
 		void classDeclaration();
 		void varDeclaration();
+		void type();
 		void methodDeclaration();
 		void isType();
 		void statement();

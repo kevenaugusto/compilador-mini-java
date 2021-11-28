@@ -92,13 +92,48 @@ Parser::classDeclaration()
 void
 Parser::varDeclaration()
 {
-
+	type();
+	match(ID);
 }
 
 void
 Parser::methodDeclaration()
 {
+	match(PUBLIC);
+	type();
+	match(ID);
+	match(L_PARENTHESES);
 
+	if (isType(lToken->name))
+	{
+		match(ID);
+
+		while (lToken->name == COMMA)
+		{
+			if (isType(lToken->name))
+				match(ID);
+		}
+	}
+
+	match(R_PARENTHESES);
+	match(L_BRACES);
+
+	while (isType(lToken->name))
+		varDeclaration();
+
+	while (lToken->name == L_BRACES)
+		statement();
+
+	match(RETURN);
+	expression();
+	match(SEMICOLON);
+	match(R_BRACES);
+}
+
+void
+Parser::type()
+{
+	
 }
 
 void
