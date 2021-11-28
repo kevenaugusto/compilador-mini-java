@@ -29,17 +29,57 @@ Parser::run()
 	advance();	
 
 	program();
-	
+
 	cout << "Compilação encerrada com sucesso!\n";
 }
 
 void
 Parser::program()
 {
-	//TODO
+
 }
 
-//Continuar....
+void
+Parser::classDeclaration()
+{
+
+}
+
+void
+Parser::classDeclaration()
+{
+
+}
+
+void
+Parser::varDeclaration()
+{
+
+}
+
+void
+Parser::methodDeclaration()
+{
+
+}
+
+void
+Parser::isType()
+{
+
+}
+
+void
+Parser::isStatement()
+{
+
+}
+
+void
+Parser::isExpression()
+{
+
+}
 
 void
 Parser::error(string str)

@@ -9,11 +9,15 @@ class Parser
 		void advance();
 		void match(int);
 		
-
 	public:
 		Parser(string);
 		void run();
         void program();
-        //Continuar....
+		void classDeclaration();
+		void varDeclaration();
+		void methodDeclaration();
+		void isType();
+		void isStatement();
+		void isExpression();
         void error(string);
 };
