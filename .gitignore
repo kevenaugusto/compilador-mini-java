@@ -3,3 +3,9 @@ comp.exe
 
 # Configurações locais do VisualStudio Code
 .vscode/settings.json
+
+# Arquivo de Gramática
+Gramatica_1_1.txt
+
+# Arquivo de teste
+teste.txt
