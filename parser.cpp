@@ -17,10 +17,8 @@ Parser::advance()
 void
 Parser::match(int t)
 {
-	if (lToken->name == t || lToken->attribute == t){
-		printf("match\n");
+	if (lToken->name == t || lToken->attribute == t)
 		advance();
-	}
 		
 	else
 		error("Erro inesperado");
@@ -33,7 +31,7 @@ Parser::run()
 
 	program();
 
-	cout << "Compilação encerrada com sucesso!\n";
+	cout << "Compilacao encerrada com sucesso!\n";
 }
 
 void
@@ -43,14 +41,13 @@ Parser::program()
 
 	while (lToken->name == CLASS)
 		classDeclaration();
-	printf("to aqui");
+	
 	match(END_OF_FILE);
 }
 
 void
 Parser::mainClass()
 {
-	cout << "ENTREI NO MAIN CLASS, CACETE!; " ;
 	match(CLASS);
 	match(ID);
 	match(L_BRACES);
@@ -73,7 +70,6 @@ Parser::mainClass()
 void
 Parser::classDeclaration()
 {
-	cout << "AGORA NA CLASSDECLARATION, DISGRAÇA!; " ;
 	match(CLASS);
 	match(ID);
 
@@ -86,23 +82,17 @@ Parser::classDeclaration()
 	match(L_BRACES);
 
 	while (isType(lToken->name))
-	{
-		cout << "EU ENTREI AQUI, LUIZ! PELO AMOR DE ODIN, CARA!; ";
 		varDeclaration();
-	}
 
 	while (lToken->name == PUBLIC)
 		methodDeclaration();
 
-	printf("\ncheguei aqui e to com %d %d\n", lToken->name, lToken->attribute);
 	match(R_BRACES);
-	printf("nao deu match");
 }
 
 void
 Parser::varDeclaration()
 {
-	cout << "VARDECLARAÇÃO DE INDEPENDÊNCIA!; " ;
 	type();
 	match(ID);
 	match(SEMICOLON);
@@ -111,7 +101,6 @@ Parser::varDeclaration()
 void
 Parser::methodDeclaration()
 {
-	cout << "DECLARAÇÃO DOS MÉTODOS!; " ;
 	match(PUBLIC);
 	type();
 	match(ID);
@@ -142,11 +131,9 @@ Parser::methodDeclaration()
 
 	while (isStatement(lToken->name, lToken->attribute))
 		statement();
-	printf("\ncheguei  fora statemente aqui e to com %d\n", lToken->name);
+	
 	match(RETURN);
-	printf("\ncheguei aqui return e to com %d\n", lToken->name);
 	expression();
-	printf("\ncheguei aqui return e to com %d\n", lToken->name);
 	match(SEMICOLON);
 	match(R_BRACES);
 }
@@ -156,7 +143,6 @@ Parser::methodDeclaration()
 bool
 Parser::isStatement(int& name, int& attribute)
 {
-	cout << "É ESTATUTU?!; " ;
 	if (attribute == L_BRACES)
 		return true;
 	else if (name == IF || name == WHILE || name == SOUT || name == ID)
@@ -168,12 +154,8 @@ Parser::isStatement(int& name, int& attribute)
 bool
 Parser::isType(int& name)
 {
-	cout << "É TIPO MESMO, IRMÃO?!; " ;
 	if (name == INT || name == BOOLEAN || name == ID)
-	{
-		cout << "NÃO VOU ENTRAR SÓ PORQUE NÃO TO AFIM! SACOU?!; ";
 		return true;
-	}
 	
 	return false;
 }
@@ -181,7 +163,6 @@ Parser::isType(int& name)
 void
 Parser::type()
 {
-	cout << "PROCESSA O TIPO, ZÉ RUELA!; " ;
 	if (lToken->name == INT)
 	{
 		advance();
@@ -193,19 +174,14 @@ Parser::type()
 		}
 	}
 	else if (lToken->name == BOOLEAN)
-	{
 		match(BOOLEAN);
-	}
 	else if (lToken->name == ID)
-	{
 		match(ID);
-	}
 }
 
 void
 Parser::statement()
 {
-	cout << "ESTATUDO DO DESARMAMENTO É UMA FARSA DA ESQUERDA FACISTA ROMANA; " ;
 	if (lToken->attribute == L_BRACES)
 	{
 		advance();
@@ -214,14 +190,12 @@ Parser::statement()
 	}
 	else if (lToken->name == IF)
 	{
-		cout << "ENTREI NO MÉTODO INDECISO!!; ";
 		advance();
 		match(L_PARENTHESES);
 		expression();
 		match(R_PARENTHESES);
 		statement();
 		match(ELSE);
-		cout << "passei pelo else";
 		statement();
 	}
 	else if (lToken->name == WHILE)
@@ -245,7 +219,7 @@ Parser::statement()
 		advance();
 
 		if (lToken->attribute == EQ)
-		{ 	cout<< "igual";
+		{ 	
 			advance();
 			expression();
 			match(SEMICOLON);
@@ -265,7 +239,6 @@ Parser::statement()
 void
 Parser::expression()
 {
-	cout << "EXPRESSÃO DO CONSTRANGIMENTO!; " ;
 	if (lToken->attribute == INTEGER_LITERAL || lToken->name == TRUE || lToken->name == FALSE || lToken->name == ID || lToken->name == THIS)
 	{
 		advance();
@@ -309,17 +282,15 @@ Parser::expression()
 void
 Parser::exp()
 {
-	cout << "FATORIAL EXPONENCIAL!; " ;
 	if (lToken->attribute == L_BRACKET)
 	{	
-		printf("\ncheguei lbraaqui e to com porra");
 		advance();
 		expression();
 		match(R_BRACKET);
 		exp();
 	}
 	else if (lToken->attribute == DOT)
-	{	printf("\ncheguei dot aqui e to com %d\n", lToken->name);
+	{	
 		advance();
 		
 		if (lToken->name == LENGTH)
@@ -346,7 +317,7 @@ Parser::exp()
 		}
 	}
 	else if (lToken->name == RELOP)
-	{	printf("\ncheguei aqui e to com bugado");
+	{	
 		op();
 		expression();
 		exp();
@@ -356,7 +327,6 @@ Parser::exp()
 bool
 Parser::isExpression()
 {
-	cout << "É EXPRESSIVO MESMO?!; " ;
 	if (lToken->attribute == INTEGER_LITERAL || lToken->name == TRUE || lToken->name == FALSE || lToken->name == ID || lToken->name == THIS || lToken->name == NEW || lToken->attribute == NOT || lToken->attribute == L_PARENTHESES)
 		return true;
 	else
@@ -366,7 +336,6 @@ Parser::isExpression()
 void
 Parser::op()
 {
-	cout << "OPERADOR DE RETROESCAVADEIRA!; " ;
 	if (lToken->attribute == AND || lToken->attribute == LT || lToken->attribute == GT || lToken->attribute == DEQ || lToken->attribute == DIF || lToken->attribute == MORE || lToken->attribute == MINUS || lToken->attribute == MULT || lToken->attribute == DIV)
 		advance();
 }

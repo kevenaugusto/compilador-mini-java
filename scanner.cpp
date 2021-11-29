@@ -1,8 +1,6 @@
 #include "scanner.h"    
 #include <fstream>
 
-// ISSO AQUI VAI EMBORA DEPOIS, OK?!
-
 Token** table;
 
 void initTable()
@@ -47,16 +45,12 @@ Token* searchTable(string lexeme)
     return 0;
 }
 
-// LEMBRA DE DELETAR ESSA MERDA AÍ, ZERO MEIA!
-
 //Construtor que recebe uma string com o nome do arquivo 
 //de entrada e preenche input com seu conteúdo.
 Scanner::Scanner(string input/*, SymbolTable* table*/)
 {
-    // VAI EMBORA TAMBÉM!!
     initTable();
-    // LEMBRA DE DELETAR!!
-
+    
     /*this->input = input;
     cout << "Entrada: " << input << endl << "Tamanho: " 
          << input.length() << endl;*/
@@ -380,7 +374,7 @@ Scanner::nextToken()
                     pos++;
             }
             else
-                lexicalError("Erro de ponto!");
+                lexicalError("Erro no ponto!");
 
             isFloat = true;
         }
@@ -399,7 +393,7 @@ Scanner::nextToken()
                     pos++;
             }
             else
-                lexicalError("Erro de 'E'");
+                lexicalError("Erro no 'E'");
 
             tok = new Token(NUMBER, DOUBLE_LITERAL);           
         }
@@ -414,7 +408,7 @@ Scanner::nextToken()
     if (input[pos] == '\0')
         return new Token(END_OF_FILE);
 
-    lexicalError("Deu erro aí, mané!!");
+    lexicalError("Erro léxico encontrado!!");
     
     tok = new Token(UNDEF);
 
