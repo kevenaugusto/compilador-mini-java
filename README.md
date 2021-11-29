@@ -8,7 +8,7 @@ g++ -Wall -o comp *.cpp
 ./comp arquivo_da_linguagem.txt
 
 # Implementações
-[x] Analisador Léxico
-[x] Analisador Sintático
-[ ] Correção de Erros
-[ ] Análise Semântica
+- [x] Analisador Léxico
+- [x] Analisador Sintático
+- [ ] Correção de Erros
+- [ ] Análise Semântica
