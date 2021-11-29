@@ -75,6 +75,8 @@ Scanner::Scanner(string input/*, SymbolTable* table*/)
             this->input.append(line + '\n');
         }
         inputFile.close();
+
+        this->input.append("" + '\0');
     }
     else 
         cout << "Unable to open file\n"; 
@@ -121,8 +123,10 @@ Scanner::nextToken()
             line++;
     }
 
-    if (input[pos] == '\n')
+    if (input[pos] == '\n'){
         pos++;
+        line++;
+    }    
     else if (input[pos] == '\t')
         pos++;
     else if (input[pos] == '\r')
@@ -406,6 +410,9 @@ Scanner::nextToken()
         
         return tok;
     }
+
+    if (input[pos] == '\0')
+        return new Token(END_OF_FILE);
 
     lexicalError("Deu erro aí, mané!!");
     

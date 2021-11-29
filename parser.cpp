@@ -17,8 +17,11 @@ Parser::advance()
 void
 Parser::match(int t)
 {
-	if (lToken->name == t || lToken->attribute == t)
+	if (lToken->name == t || lToken->attribute == t){
+		printf("match\n");
 		advance();
+	}
+		
 	else
 		error("Erro inesperado");
 }
@@ -40,7 +43,7 @@ Parser::program()
 
 	while (lToken->name == CLASS)
 		classDeclaration();
-
+	printf("to aqui");
 	match(END_OF_FILE);
 }
 
@@ -91,7 +94,9 @@ Parser::classDeclaration()
 	while (lToken->name == PUBLIC)
 		methodDeclaration();
 
+	printf("\ncheguei aqui e to com %d %d\n", lToken->name, lToken->attribute);
 	match(R_BRACES);
+	printf("nao deu match");
 }
 
 void
@@ -137,12 +142,16 @@ Parser::methodDeclaration()
 
 	while (isStatement(lToken->name, lToken->attribute))
 		statement();
-
+	printf("\ncheguei  fora statemente aqui e to com %d\n", lToken->name);
 	match(RETURN);
+	printf("\ncheguei aqui return e to com %d\n", lToken->name);
 	expression();
+	printf("\ncheguei aqui return e to com %d\n", lToken->name);
 	match(SEMICOLON);
 	match(R_BRACES);
 }
+
+
 
 bool
 Parser::isStatement(int& name, int& attribute)
@@ -205,12 +214,14 @@ Parser::statement()
 	}
 	else if (lToken->name == IF)
 	{
+		cout << "ENTREI NO MÉTODO INDECISO!!; ";
 		advance();
 		match(L_PARENTHESES);
 		expression();
 		match(R_PARENTHESES);
 		statement();
 		match(ELSE);
+		cout << "passei pelo else";
 		statement();
 	}
 	else if (lToken->name == WHILE)
@@ -234,7 +245,7 @@ Parser::statement()
 		advance();
 
 		if (lToken->attribute == EQ)
-		{
+		{ 	cout<< "igual";
 			advance();
 			expression();
 			match(SEMICOLON);
@@ -300,14 +311,15 @@ Parser::exp()
 {
 	cout << "FATORIAL EXPONENCIAL!; " ;
 	if (lToken->attribute == L_BRACKET)
-	{
+	{	
+		printf("\ncheguei lbraaqui e to com porra");
 		advance();
 		expression();
 		match(R_BRACKET);
 		exp();
 	}
 	else if (lToken->attribute == DOT)
-	{
+	{	printf("\ncheguei dot aqui e to com %d\n", lToken->name);
 		advance();
 		
 		if (lToken->name == LENGTH)
@@ -334,7 +346,7 @@ Parser::exp()
 		}
 	}
 	else if (lToken->name == RELOP)
-	{
+	{	printf("\ncheguei aqui e to com bugado");
 		op();
 		expression();
 		exp();
