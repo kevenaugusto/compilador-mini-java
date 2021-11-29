@@ -18,8 +18,11 @@ class Parser
 		void varDeclaration();
 		void methodDeclaration();
 		bool isType(int&);
+		void type();
 		void statement();
+		bool isStatement(int&, int&);
 		void expression();
+		bool isExpression();
 		void exp();
 		void op();
         void error(string);

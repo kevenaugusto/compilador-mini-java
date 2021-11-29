@@ -1,4 +1,5 @@
 #include "scanner.h"    
+#include <fstream>
 
 // ISSO AQUI VAI EMBORA DEPOIS, OK?!
 
@@ -85,6 +86,11 @@ Scanner::Scanner(string input/*, SymbolTable* table*/)
 
 }
 
+Scanner::~Scanner()
+{
+    freeTable();
+}
+
 int
 Scanner::getLine()
 {
@@ -108,7 +114,12 @@ Scanner::nextToken()
 
     //Consome espaços em branco
     while (isspace(input[pos]))
+    {
         pos++;
+        
+        if (input[pos] == '\n')
+            line++;
+    }
 
     if (input[pos] == '\n')
         pos++;
@@ -365,7 +376,7 @@ Scanner::nextToken()
                     pos++;
             }
             else
-                lexicalError();
+                lexicalError("Erro de ponto!");
 
             isFloat = true;
         }
@@ -384,7 +395,7 @@ Scanner::nextToken()
                     pos++;
             }
             else
-                lexicalError();
+                lexicalError("Erro de 'E'");
 
             tok = new Token(NUMBER, DOUBLE_LITERAL);           
         }
@@ -396,7 +407,7 @@ Scanner::nextToken()
         return tok;
     }
 
-    lexicalError();
+    lexicalError("Deu erro aí, mané!!");
     
     tok = new Token(UNDEF);
 

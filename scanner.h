@@ -18,5 +18,5 @@ class Scanner
         Token* nextToken();        
     
         //Método para manipular erros
-        void lexicalError();
+        void lexicalError(string);
 };

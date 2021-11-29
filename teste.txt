@@ -1,0 +1,16 @@
+class Factorial{
+    public static void main(String[] a){
+        System.out.println(new Fac());
+    }
+}
+
+class Fac {
+    public int ComputeFac(int num){
+        int numaux;
+        if(numaux == 1) 
+            numaux = 2;
+        else
+            numaux = 3;
+        return true;
+    }
+}
